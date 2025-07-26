@@ -89,3 +89,9 @@ travelpals-backend/
 ├── tsconfig.base.json              # Shared base TS config
 ├── package.json                    # Root-level scripts (optional)
 └── README.md
+
+// commands to run
+
+// install db dependencies
+npm install @supabase/supabase-js
+

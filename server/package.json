@@ -1,13 +1,17 @@
 {
   "name": "server",
+  "private": true,
   "version": "1.0.0",
-  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build",
-    "start": "node ./dist/server.js",
-    "dev": "nodemon ./src/server.ts"
-  },
+  "dev:trip": "npm --prefix services/trip-service run dev",
+  "dev:auth": "npm --prefix services/auth-service run dev",
+  "dev:user": "npm --prefix services/user-service run dev",
+  "dev:media": "npm --prefix services/media-service run dev",
+  "dev:social": "npm --prefix services/social-service run dev",
+  "dev:gateway": "npm --prefix gateway/api-gateway run dev",
+  "dev:all": "concurrently \"npm run dev:trip\" \"npm run dev:auth\" \"npm run dev:user\" \"npm run dev:media\" \"npm run dev:social\" \"npm run dev:gateway\"",
+  "build:all": "tsc -b services/* gateway/api-gateway"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,9 +21,6 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@types/express": "^5.0.2",
-    "@types/node": "^22.15.21",
-    "nodemon": "^3.1.10",
-    "ts-node": "^10.9.2"
+    "concurrently": "^9.2.0"
   }
 }

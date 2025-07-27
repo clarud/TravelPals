@@ -1,0 +1,40 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.env.*.local
+.env.local
+.env.development
+.env.production
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDEs
+.vscode/
+.idea/
+
+# ts-node temporary files
+*.tsbuildinfo
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Ignore dotenvx stuff (optional)
+.dotenvxrc

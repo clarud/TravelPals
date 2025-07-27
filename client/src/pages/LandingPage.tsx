@@ -6,7 +6,7 @@ const LandingPage = () => {
       <section className="hero-section">
         <h1>Welcome to TravelPals</h1>
         <p className="hero-subtitle">
-          Find your perfect travel companion and explore the world together
+          One stop app for all your travel planning discoveries
         </p>
         <div className="hero-actions">
           <button className="btn btn-primary btn-large">
@@ -22,7 +22,7 @@ const LandingPage = () => {
         <h2>Why Choose TravelPals?</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <h3>🌍 Global Network</h3>
+            <h3>🌍 Social Network</h3>
             <p>Connect with travelers from around the world</p>
           </div>
           <div className="feature-card">
@@ -30,8 +30,8 @@ const LandingPage = () => {
             <p>Verified profiles and secure messaging</p>
           </div>
           <div className="feature-card">
-            <h3>🎯 Perfect Matches</h3>
-            <p>Find companions with similar interests</p>
+            <h3>🎯 Interactive Planning Experience</h3>
+            <p>Plan your trips with ease</p>
           </div>
         </div>
       </section>

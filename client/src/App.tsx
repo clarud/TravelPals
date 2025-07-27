@@ -1,57 +1,55 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, useNavigate } from 'react-router-dom'
 import Header from './components/Header'
-import LandingPage from './pages/LandingPage'
+import AppRoutes from './components/AppRoutes'
+import { useAuth } from './hooks/useAuth'
 import './App.css'
 
-// This could be expanded to include routing, authentication state, etc.
-function App() {
-  // Global app state
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [currentUser, setCurrentUser] = useState(null)
+// AppContent component to use hooks inside Router context
+function AppContent() {
+  const { isAuthenticated, currentUser, login, logout } = useAuth()
+  const navigate = useNavigate()
 
-  // Global handlers that could affect the entire app
-  const handleLogin = () => {
-    // TODO: Implement actual login logic
-    console.log('Login clicked from App')
-    // Future: Navigate to login page or show login modal
-    // setIsAuthenticated(true)
+  // Navigation handlers
+  const handleLoginClick = () => {
+    navigate('/login')
   }
 
-  const handleSignUp = () => {
-    // TODO: Implement actual signup logic
-    console.log('Sign up clicked from App')
-    // Future: Navigate to signup page or show signup modal
+  const handleSignUpClick = () => {
+    navigate('/signup') // Future: implement signup page
   }
 
   const handleLogout = () => {
-    setIsAuthenticated(false)
-    setCurrentUser(null)
-    // TODO: Clear authentication tokens, redirect to home
+    logout()
+    navigate('/')
   }
 
-  // In the future, this could render different components based on routes
-  // For now, we're just showing the landing page
   return (
     <div className="app">
       <Header 
-        onLogin={handleLogin} 
-        onSignUp={handleSignUp} 
+        onLogin={handleLoginClick} 
+        onSignUp={handleSignUpClick} 
         isAuthenticated={isAuthenticated}
         currentUser={currentUser}
         onLogout={handleLogout}
       />
       
-      {/* This is where you'd typically have a Router in a real app */}
       <main className="app-main">
-        {isAuthenticated ? (
-          // Future: Dashboard or authenticated user content
-          <div>Welcome back! Dashboard coming soon...</div>
-        ) : (
-          // Show landing page for non-authenticated users
-          <LandingPage />
-        )}
+        <AppRoutes 
+          isAuthenticated={isAuthenticated}
+          currentUser={currentUser}
+          onLogin={login}
+        />
       </main>
     </div>
+  )
+}
+
+// Main App component with Router wrapper
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   )
 }
 

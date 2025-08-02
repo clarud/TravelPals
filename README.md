@@ -90,7 +90,13 @@ travelpals-backend/
 ├── package.json                    # Root-level scripts (optional)
 └── README.md
 
+
 // commands to run
+
+// install microservice dependencies
+npm init -y
+npm install express dotenv @supabase/supabase-js
+npm install -D typescript ts-node-dev @types/node @types/express       
 
 // install db dependencies
 npm install @supabase/supabase-js

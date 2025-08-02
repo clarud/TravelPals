@@ -4,9 +4,17 @@ import supabase from "../supabase/client";
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const { data, error } = await supabase.from('user_profiles').select('*');
+  const user = (req as any).user;
+  const userId = user.id;
+
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', userId)
+    .single();
 
   if (error) return res.status(500).json({ error: error.message });
+
   res.json(data);
 } 
 );

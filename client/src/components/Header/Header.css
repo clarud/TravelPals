@@ -60,23 +60,3 @@
   text-decoration: none;
   display: inline-block;
 }
-
-.btn-primary {
-  background-color: #646cff;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #535bf2;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: #646cff;
-  border: 1px solid #646cff;
-}
-
-.btn-secondary:hover {
-  background-color: #646cff;
-  color: white;
-}

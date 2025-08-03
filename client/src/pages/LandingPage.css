@@ -7,8 +7,8 @@
 .hero-section {
   padding: 4rem 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-surface);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@
   font-size: 3.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
+  color: var(--color-surface);
 }
 
 .hero-subtitle {
@@ -28,6 +29,7 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  color: var(--color-surface);
 }
 
 .hero-actions {
@@ -37,14 +39,37 @@
   flex-wrap: wrap;
 }
 
-.btn-large {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
+/* Hero-specific button overrides - uses global .btn system with custom colors for hero */
+.hero-section .btn-primary {
+  --btn-primary-bg: var(--color-surface);
+  --btn-primary-color: var(--color-primary);
+  --btn-primary-hover-bg: transparent;
+  border: 2px solid var(--color-surface);
+}
+
+.hero-section .btn-primary:hover {
+  color: var(--color-surface);
+  border: 2px solid var(--color-surface);
+  transform: translateY(-1px);
+}
+
+.hero-section .btn-secondary {
+  --btn-secondary-bg: transparent;
+  --btn-secondary-color: var(--color-surface);
+  --btn-secondary-border: var(--color-surface);
+  --btn-secondary-hover-bg: var(--color-surface);
+  --btn-secondary-hover-color: var(--color-primary);
+  border: 2px solid var(--color-surface);
+}
+
+.hero-section .btn-secondary:hover {
+  transform: translateY(-1px);
 }
 
 .features-section {
   padding: 4rem 2rem;
-  background-color: #f8f9fa;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
 
 .features-section h2 {
@@ -52,6 +77,7 @@
   margin-bottom: 3rem;
   color: #333;
   font-size: 2.5rem;
+  color: var(--color-text);
 }
 
 .features-grid {
@@ -63,7 +89,7 @@
 }
 
 .feature-card {
-  background: white;
+  background: var(--color-surface);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -72,12 +98,12 @@
 
 .feature-card h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-text);
   font-size: 1.5rem;
 }
 
 .feature-card p {
-  color: #666;
+  color: var(--color-muted);
   line-height: 1.6;
 }
 
@@ -91,7 +117,7 @@
     align-items: center;
   }
   
-  .btn-large {
+  .hero-section .btn-lg {
     width: 100%;
     max-width: 300px;
   }

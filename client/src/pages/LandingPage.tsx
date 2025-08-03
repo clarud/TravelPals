@@ -9,10 +9,10 @@ const LandingPage = () => {
           One stop app for all your travel planning discoveries
         </p>
         <div className="hero-actions">
-          <button className="btn btn-primary btn-large">
+          <button className="btn btn-primary btn-lg">
             Start Your Journey
           </button>
-          <button className="btn btn-secondary btn-large">
+          <button className="btn btn-secondary btn-lg">
             Learn More
           </button>
         </div>

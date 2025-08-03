@@ -1,11 +1,47 @@
 :root {
+  /* Brand Colors */
+  --color-primary: #40BFBF;
+  --color-primary-dark: #008C8C;
+  --color-accent: #E30613;
+  --color-accent-light: #FFB9A5;
+
+  /* UI Neutrals */
+  --color-surface: #ffffff;
+  --color-background: #F9F9F9;
+  --color-muted: #C4C4C4;
+  --color-text: #213547;
+
+  /* Link Colors */
+  --color-link: #4F96A8;
+  --color-link-hover: #005C6E;
+
+  /* Button Design Tokens */
+  --btn-border-radius: 8px;
+  --btn-padding-sm: 0.5rem 1rem;
+  --btn-padding-md: 0.6rem 1.2rem;
+  --btn-padding-lg: 1rem 2rem;
+  --btn-font-weight: 500;
+  --btn-transition: all 0.25s ease;
+
+  /* Button Color Variants */
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-color: var(--color-surface);
+  --btn-primary-hover-bg: var(--color-primary-dark);
+
+  --btn-secondary-bg: transparent;
+  --btn-secondary-color: var(--color-primary);
+  --btn-secondary-border: var(--color-primary);
+  --btn-secondary-hover-bg: var(--color-primary);
+  --btn-secondary-hover-color: var(--color-surface);
+
+  /* System */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light;
-  color: #333;
-  background-color: #ffffff;
+  color: var(--color-text);
+  background-color: var(--color-background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +51,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-link);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-link-hover);
 }
 
 body {
@@ -39,20 +75,64 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+/* Base button component */
+.btn {
+  border-radius: var(--btn-border-radius);
+  padding: var(--btn-padding-md);
   font-size: 1em;
-  font-weight: 500;
+  font-weight: var(--btn-font-weight);
   font-family: inherit;
-  background-color: #1a1a1a;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: var(--btn-transition);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
-button:hover {
-  border-color: #646cff;
+
+/* Button variants */
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
 }
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover-bg);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-color);
+  border: 1px solid var(--btn-secondary-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover-bg);
+  color: var(--btn-secondary-hover-color);
+}
+
+/* Button sizes */
+.btn-sm { padding: var(--btn-padding-sm); }
+.btn-lg { padding: var(--btn-padding-lg); font-size: 1.1rem; }
+
+/* Only style buttons that don't have btn classes - for backwards compatibility */
+button:not([class*="btn"]) {
+  border-radius: var(--btn-border-radius);
+  border: 1px solid transparent;
+  padding: var(--btn-padding-md);
+  font-size: 1em;
+  font-weight: var(--btn-font-weight);
+  font-family: inherit;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
+  cursor: pointer;
+  transition: var(--btn-transition);
+}
+
+button:not([class*="btn"]):hover {
+  background-color: var(--btn-primary-hover-bg);
+}
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -64,9 +144,6 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    color: var(--color-link-hover);
   }
 }

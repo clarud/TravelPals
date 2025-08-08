@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage'
 import LoginPage from '../pages/LoginPage'
 import SignUpPage from '../pages/SignUpPage'
+import ApiTest from './ApiTest'
 import type { User } from '../types'
 
 interface SignUpFormData {
@@ -39,6 +40,10 @@ const AppRoutes = ({ isAuthenticated, currentUser, onLogin, onSignUp }: AppRoute
       <Route 
         path="/signup" 
         element={<SignUpPage onSignUp={onSignUp} />} 
+      />
+      <Route 
+        path="/api-test" 
+        element={<ApiTest />} 
       />
       {/* Future routes */}
       {/* <Route path="/forgot-password" element={<ForgotPasswordPage />} /> */}

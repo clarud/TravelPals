@@ -34,7 +34,7 @@ function AppContent() {
   const handleLogin = async (email: string, password: string): Promise<boolean> => {
     const success = await login(email, password)
     if (success) {
-      navigate('/')
+      navigate('/dashboard')
     }
     return success
   }
@@ -42,7 +42,7 @@ function AppContent() {
   const handleSignUp = async (data: SignUpFormData): Promise<boolean> => {
     const success = await signUp(data)
     if (success) {
-      navigate('/')
+      navigate('/dashboard')
     }
     return success
   }
@@ -59,8 +59,6 @@ function AppContent() {
       
       <main className="app-main">
         <AppRoutes 
-          isAuthenticated={isAuthenticated}
-          currentUser={currentUser}
           onLogin={handleLogin}
           onSignUp={handleSignUp}
         />

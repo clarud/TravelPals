@@ -70,13 +70,26 @@ export const authService = {
     return response
   },
 
-  // OAuth login (for future use)
+  // OAuth login (for Google, GitHub, etc.)
   async loginWithOAuth(provider: string): Promise<{ url: string }> {
     const response = await apiRequest<{ url: string }>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({
         method: 'oauth',
         provider
+      })
+    })
+    
+    return response
+  },
+
+  // Handle OAuth callback (when user returns from Google)
+  async handleOAuthCallback(code: string, state?: string): Promise<AuthResponse> {
+    const response = await apiRequest<AuthResponse>('/auth/callback', {
+      method: 'POST',
+      body: JSON.stringify({
+        code,
+        state
       })
     })
     

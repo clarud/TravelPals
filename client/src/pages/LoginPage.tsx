@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import GoogleOAuthButton from '../components/GoogleOAuthButton'
 import './LoginPage.css'
 
 interface LoginFormData {
@@ -28,6 +29,10 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
     }))
     // Clear error when user starts typing
     if (error) setError('')
+  }
+
+  const handleGoogleError = (error: string) => {
+    setError(error)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -116,6 +121,16 @@ const LoginPage = ({ onLogin }: LoginPageProps) => {
           >
             {isLoading ? 'Signing In...' : 'Sign In'}
           </button>
+
+          <div className="login-divider">
+            <span>or</span>
+          </div>
+
+          <GoogleOAuthButton
+            onSuccess={() => {}} // OAuth success handled by callback page
+            onError={handleGoogleError}
+            variant="login"
+          />
 
           <div className="form-footer">
             <Link to="/forgot-password" className="forgot-password-link">

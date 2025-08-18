@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import LandingPage from '../pages/LandingPage'
+import HomePage from '../pages/HomePage'
 import LoginPage from '../pages/LoginPage'
 import SignUpPage from '../pages/SignUpPage'
+import Dashboard from '../pages/Dashboard'
+import ProtectedRoute from './ProtectedRoute'
 import ApiTest from './ApiTest'
-import type { User } from '../types'
 
 interface SignUpFormData {
   name: string
@@ -13,25 +14,17 @@ interface SignUpFormData {
 }
 
 interface AppRoutesProps {
-  isAuthenticated: boolean
-  currentUser: User | null
   onLogin: (email: string, password: string) => Promise<boolean>
   onSignUp: (data: SignUpFormData) => Promise<boolean>
 }
 
-const AppRoutes = ({ isAuthenticated, currentUser, onLogin, onSignUp }: AppRoutesProps) => {
+const AppRoutes = ({ onLogin, onSignUp }: AppRoutesProps) => {
   return (
     <Routes>
+      {/* Public routes */}
       <Route 
         path="/" 
-        element={
-          isAuthenticated ? (
-            // Future: Dashboard or authenticated user content
-            <div>Welcome back, {currentUser?.name}! Dashboard coming soon...</div>
-          ) : (
-            <LandingPage />
-          )
-        } 
+        element={<HomePage />} 
       />
       <Route 
         path="/login" 
@@ -41,13 +34,26 @@ const AppRoutes = ({ isAuthenticated, currentUser, onLogin, onSignUp }: AppRoute
         path="/signup" 
         element={<SignUpPage onSignUp={onSignUp} />} 
       />
+      
+      {/* Protected routes */}
+      <Route 
+        path="/dashboard" 
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } 
+      />
+      
+      {/* Development/testing routes */}
       <Route 
         path="/api-test" 
         element={<ApiTest />} 
       />
-      {/* Future routes */}
-      {/* <Route path="/forgot-password" element={<ForgotPasswordPage />} /> */}
-      {/* <Route path="/dashboard" element={<DashboardPage />} /> */}
+      
+      {/* Future protected routes */}
+      {/* <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} /> */}
+      {/* <Route path="/trips" element={<ProtectedRoute><TripsPage /></ProtectedRoute>} /> */}
     </Routes>
   )
 }

@@ -4,9 +4,16 @@ import AppRoutes from './components/AppRoutes'
 import { useAuth } from './hooks/useAuth'
 import './App.css'
 
+interface SignUpFormData {
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+
 // AppContent component to use hooks inside Router context
 function AppContent() {
-  const { isAuthenticated, currentUser, login, logout } = useAuth()
+  const { isAuthenticated, currentUser, login, signUp, logout } = useAuth()
   const navigate = useNavigate()
 
   // Navigation handlers
@@ -15,12 +22,29 @@ function AppContent() {
   }
 
   const handleSignUpClick = () => {
-    navigate('/signup') // Future: implement signup page
+    navigate('/signup')
   }
 
   const handleLogout = () => {
     logout()
     navigate('/')
+  }
+
+  // Auth handlers that wrap the hook methods
+  const handleLogin = async (email: string, password: string): Promise<boolean> => {
+    const success = await login(email, password)
+    if (success) {
+      navigate('/dashboard')
+    }
+    return success
+  }
+
+  const handleSignUp = async (data: SignUpFormData): Promise<boolean> => {
+    const success = await signUp(data)
+    if (success) {
+      navigate('/dashboard')
+    }
+    return success
   }
 
   return (
@@ -35,9 +59,8 @@ function AppContent() {
       
       <main className="app-main">
         <AppRoutes 
-          isAuthenticated={isAuthenticated}
-          currentUser={currentUser}
-          onLogin={login}
+          onLogin={handleLogin}
+          onSignUp={handleSignUp}
         />
       </main>
     </div>

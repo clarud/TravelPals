@@ -1,5 +1,6 @@
 # TravelPals
 A webapp that helps you plan your travels and take inspiration from others
+```
 travelpals-backend/
 ├── services/                        # All microservices
 │   ├── auth-service/
@@ -89,7 +90,7 @@ travelpals-backend/
 ├── tsconfig.base.json              # Shared base TS config
 ├── package.json                    # Root-level scripts (optional)
 └── README.md
-
+```
 
 // commands to run
 
